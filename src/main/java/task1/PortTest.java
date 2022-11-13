@@ -10,8 +10,17 @@ import java.net.http.HttpResponse;
 
 public class PortTest {
     public static void main(String[] args) throws IOException, InterruptedException {
-        System.out.println("---first point---");
         String url = "https://jsonplaceholder.typicode.com/users";
+        PortTest por = new PortTest();
+        por.firstPoint(url);
+        por.secondPoint(url);
+        por.thirdPoint();
+        por.fourthPoint();
+        por.fifthPoint();
+    }
+
+    public void firstPoint(String url) throws IOException, InterruptedException {
+        System.out.println("---first point---");
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .POST(HttpRequest.BodyPublishers.ofString(" {\n" +
@@ -43,7 +52,9 @@ public class PortTest {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         System.out.println("Post.statusCode() = " + response.statusCode());
         System.out.println("Post.body() = " + response.body());
+    }
 
+    void secondPoint(String url) throws IOException, InterruptedException {
         System.out.println("---second point---");
         HttpRequest request2 = HttpRequest.newBuilder().uri(URI.create(url))
                 .build();
@@ -87,7 +98,9 @@ public class PortTest {
         HttpResponse<String> response1 = client1.send(request1, HttpResponse.BodyHandlers.ofString());
         System.out.println("Update.statusCode() = " + response1.statusCode());
         System.out.println("Update.body() = " + response1.body());
+    }
 
+    void thirdPoint() throws IOException, InterruptedException {
         System.out.println("---fourth point---");
         String urlDelete = "https://jsonplaceholder.typicode.com/users/8";
         HttpRequest request3 = HttpRequest.newBuilder()
@@ -100,7 +113,9 @@ public class PortTest {
         HttpResponse<String> response3 = client3.send(request3, HttpResponse.BodyHandlers.ofString());
         System.out.println("Delete.statusCode() = " + response3.statusCode());
         System.out.println("Delete.body() = " + response3.body());
+    }
 
+    void fourthPoint() throws IOException, InterruptedException {
         System.out.println("---fifth point---");
         String urlUser = "https://jsonplaceholder.typicode.com/users/2";
         HttpRequest request4 = HttpRequest.newBuilder().uri(URI.create(urlUser))
@@ -111,7 +126,9 @@ public class PortTest {
         HttpResponse<String> response4 = client4.send(request4, HttpResponse.BodyHandlers.ofString());
         System.out.println("GetInfoAboutOne.statusCode() = " + response4.statusCode());
         System.out.println("GetInfoAboutOne.body() = " + response4.body());
+    }
 
+    void fifthPoint() throws IOException, InterruptedException {
         System.out.println("---six point---");
         String urlU = "https://jsonplaceholder.typicode.com/users?username=Leopoldo_Corkery";
         HttpRequest request5 = HttpRequest.newBuilder().uri(URI.create(urlU))
@@ -123,5 +140,4 @@ public class PortTest {
         System.out.println("GetInfoByUsername.statusCode() = " + response5.statusCode());
         System.out.println("GetInfoByUsername.body() = " + response5.body());
     }
-
 }

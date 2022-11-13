@@ -1,23 +1,35 @@
 package task3;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import org.jsoup.Jsoup;
+import task3.UsersFor3;
+
 import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 public class Task3 {
     public static void main(String[] args) throws IOException, InterruptedException {
-        String urlCompleted = "https://jsonplaceholder.typicode.com/users/1/todos?completed=false";
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(urlCompleted))
-                .build();
+        String urlCompleted = "https://jsonplaceholder.typicode.com/users/1/todos";
+        String resp = Jsoup.connect(urlCompleted)
+                .ignoreContentType(true)
+                .get()
+                .body()
+                .text();
 
-        HttpClient client = HttpClient.newBuilder()
-                .version(HttpClient.Version.HTTP_1_1)
-                .build();
+        Type type = TypeToken
+                .getParameterized(List.class, UsersFor3.class)
+                .getType();
+        List<UsersFor3> user = new Gson().fromJson(resp, type);
 
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println("Task3.statusCode() = " + response.statusCode());
-        System.out.println("Task3.body() = " + response.body());
+        String complete = "false";
+        user = user.stream()
+                .filter(item -> complete.equals(item.getCompleted()))
+                .collect(Collectors.toList());
+        System.out.println(user);
     }
 }

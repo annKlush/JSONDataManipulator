@@ -1,11 +1,10 @@
 package task2;
 
 public class User {
-    private int id;
     private int userId;
+    private int id;
     private String title;
     private String body;
-
 
     public int getId() {
         return id;
