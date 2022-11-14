@@ -29,18 +29,14 @@ public class Task2 {
 
         final int[] a = {0};
 
-        List<User> list = new ArrayList<>();
+
         for (User item : user) {
             if (item.getId() > a[0]) {
                 a[0] = item.getId();
             }
-            if (item.getId() == a[0]) {
-                list.add(item);
-            }
         }
 
-        for (int n = 46; n < 50; n++) {
-            String urlC = "https://jsonplaceholder.typicode.com/posts/" + a[0] + "/comments/?id=" + n;
+            String urlC = "https://jsonplaceholder.typicode.com/posts/" + a[0] + "/comments/";
 
             HttpRequest request6Comments = HttpRequest.newBuilder().uri(URI.create(urlC))
                     .build();
@@ -49,10 +45,10 @@ public class Task2 {
                     .build();
             HttpResponse<String> response6Comments = client6Comments.send(request6Comments, HttpResponse.BodyHandlers.ofString());
 
-            String[] arr = response6Comments.body().split("\n");
-            String comment = arr[4] + "\n" + arr[6];
 
-            try (FileWriter file = new FileWriter("user-" + n + "-post-" + "10-comments.json")) {
+            String comment = response6Comments.body();
+
+            try (FileWriter file = new FileWriter("user-1" + "-post-" +a[0]+"-comments.json")) {
                 file.write(comment);
                 file.flush();
             } catch (IOException e) {
@@ -60,5 +56,5 @@ public class Task2 {
             }
             System.out.println("File create or update");
         }
-    }
+
 }

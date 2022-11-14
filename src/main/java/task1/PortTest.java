@@ -23,28 +23,7 @@ public class PortTest {
         System.out.println("---first point---");
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
-                .POST(HttpRequest.BodyPublishers.ofString(" {\n" +
-                        "    \"name\": \"Kurtis1 Weissnat1\",\n" +
-                        "    \"username\": \"Elwyn.Skiles\",\n" +
-                        "    \"email\": \"Telly.Hoeger@billy.biz\",\n" +
-                        "    \"address\": {\n" +
-                        "      \"street\": \"Rex Trail\",\n" +
-                        "      \"suite\": \"Suite 280\",\n" +
-                        "      \"city\": \"Howemouth\",\n" +
-                        "      \"zipcode\": \"58804-1099\",\n" +
-                        "      \"geo\": {\n" +
-                        "        \"lat\": \"24.8918\",\n" +
-                        "        \"lng\": \"21.8984\"\n" +
-                        "      }\n" +
-                        "    },\n" +
-                        "    \"phone\": \"210.067.6132\",\n" +
-                        "    \"website\": \"elvis.io\",\n" +
-                        "    \"company\": {\n" +
-                        "      \"name\": \"Johns Group\",\n" +
-                        "      \"catchPhrase\": \"Configurable multimedia task-force\",\n" +
-                        "      \"bs\": \"generate enterprise e-tailers\"\n" +
-                        "    }\n" +
-                        "  }"))
+                .POST(HttpRequest.BodyPublishers.ofString(user))
                 .build();
         HttpClient client = HttpClient.newBuilder()
                 .version(HttpClient.Version.HTTP_1_1)
@@ -69,28 +48,7 @@ public class PortTest {
         String urlUpd = "https://jsonplaceholder.typicode.com/users/1";
         HttpRequest request1 = HttpRequest.newBuilder().uri(URI.create(urlUpd))
                 .header("Content-Type", "application/json")
-                .PUT(HttpRequest.BodyPublishers.ofString(" {\n" +
-                        "    \"name\": \"Kurtis1 Weissnat1\",\n" +
-                        "    \"username\": \"Elwyn.Skiles\",\n" +
-                        "    \"email\": \"Telly.Hoeger@billy.biz\",\n" +
-                        "    \"address\": {\n" +
-                        "      \"street\": \"Rex Trail\",\n" +
-                        "      \"suite\": \"Suite 280\",\n" +
-                        "      \"city\": \"Howemouth\",\n" +
-                        "      \"zipcode\": \"58804-1099\",\n" +
-                        "      \"geo\": {\n" +
-                        "        \"lat\": \"24.8918\",\n" +
-                        "        \"lng\": \"21.8984\"\n" +
-                        "      }\n" +
-                        "    },\n" +
-                        "    \"phone\": \"210.067.6132\",\n" +
-                        "    \"website\": \"elvis.io\",\n" +
-                        "    \"company\": {\n" +
-                        "      \"name\": \"Johns Group\",\n" +
-                        "      \"catchPhrase\": \"Configurable multimedia task-force\",\n" +
-                        "      \"bs\": \"generate enterprise e-tailers\"\n" +
-                        "    }\n" +
-                        "  }"))
+                .PUT(HttpRequest.BodyPublishers.ofString(user))
                 .build();
         HttpClient client1 = HttpClient.newBuilder()
                 .version(HttpClient.Version.HTTP_1_1)
@@ -140,4 +98,28 @@ public class PortTest {
         System.out.println("GetInfoByUsername.statusCode() = " + response5.statusCode());
         System.out.println("GetInfoByUsername.body() = " + response5.body());
     }
+    public String user=
+        " {\n" +
+                "    \"name\": \"Kurtis1 Weissnat1\",\n" +
+                "    \"username\": \"Elwyn.Skiles\",\n" +
+                "    \"email\": \"Telly.Hoeger@billy.biz\",\n" +
+                "    \"address\": {\n" +
+                "      \"street\": \"Rex Trail\",\n" +
+                "      \"suite\": \"Suite 280\",\n" +
+                "      \"city\": \"Howemouth\",\n" +
+                "      \"zipcode\": \"58804-1099\",\n" +
+                "      \"geo\": {\n" +
+                "        \"lat\": \"24.8918\",\n" +
+                "        \"lng\": \"21.8984\"\n" +
+                "      }\n" +
+                "    },\n" +
+                "    \"phone\": \"210.067.6132\",\n" +
+                "    \"website\": \"elvis.io\",\n" +
+                "    \"company\": {\n" +
+                "      \"name\": \"Johns Group\",\n" +
+                "      \"catchPhrase\": \"Configurable multimedia task-force\",\n" +
+                "      \"bs\": \"generate enterprise e-tailers\"\n" +
+                "    }\n" +
+                "  }";
+
 }

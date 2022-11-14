@@ -1,6 +1,6 @@
 package task3;
 
-public class UsersFor3 {
+public class Tasks {
     private int userId;
     private int id;
     private String title;
